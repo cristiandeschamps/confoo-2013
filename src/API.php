@@ -12,6 +12,7 @@ namespace ConFoo\Mess {
          * @param string $email
          *
          * @throws UsernameUnavailableException
+         * @throws InvalidUsernameException
          * @throws InvalidEmailException
          *
          * @return string Token

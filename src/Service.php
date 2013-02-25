@@ -5,6 +5,18 @@ namespace ConFoo\Mess {
     class Service implements API {
 
         /**
+         * @var UserPersistence
+         */
+        private $persistence;
+
+        /**
+         * @param UserPersistence $persistence
+         */
+        public function __construct(UserPersistence $persistence) {
+            $this->persistence = $persistence;
+        }
+
+        /**
          * Creates a new user account and
          * returns a unique authentication token
          *
@@ -12,12 +24,24 @@ namespace ConFoo\Mess {
          * @param string $email
          *
          * @throws UsernameUnavailableException
+         * @throws InvalidUsernameException
          * @throws InvalidEmailException
          *
          * @return string Token
          */
         public function registerUser($username, $email) {
-            // TODO: Implement registerUser() method.
+            if (strlen($username) < 4) {
+                throw new InvalidUsernameException("'$username' is too short");
+            }
+            $token = new Token($username);
+
+            try {
+                $this->persistence->saveUser(new User($username, $email, $token));
+                return $token;
+            } catch (PersistenceException $e) {
+                throw new \RuntimeException('...', 0, $e);
+            }
+
         }
 
         /**
