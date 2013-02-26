@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="mess" default="build">
- <property name="php" value="php"/>
- <property name="phpunit" value="phpunit"/>
-
  <target name="build" depends="prepare,lint,phpunit"/>
 
  <target name="clean" description="Cleanup build artifacts">
@@ -38,12 +35,6 @@
  </target>
 
  <target name="phpunit" description="Run unit tests with PHPUnit">
-  <condition property="phpunit_cmd" value="${php} ${phpunit}" else="${phpunit}">
-   <not>
-    <equals arg1="${phpunit}" arg2="phpunit" />
-   </not>
-  </condition>
-
-  <exec executable="${phpunit_cmd}" failonerror="true"/>
+  <exec executable="phpunit" failonerror="true"/>
  </target>
 </project>
