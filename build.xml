@@ -21,7 +21,7 @@
   </exec>
  </target>
 
- <target name="lint">
+ <target name="lint" description="Perform syntax check of sourcecode files">
   <apply executable="${php}" failonerror="true">
    <arg value="-l" />
 
