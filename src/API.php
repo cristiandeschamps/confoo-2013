@@ -20,7 +20,7 @@ namespace ConFoo\Mess {
         public function registerUser($username, $email);
 
         /**
-         * @param string $token
+         * @param Token $token
          * @param string $recipient Username
          * @param string $message
          *
@@ -31,14 +31,14 @@ namespace ConFoo\Mess {
          *
          * @return null
          */
-        public function postMessage($token, $recipient, $message);
+        public function postMessage(Token $token, $recipient, $message);
 
         /**
-         * @param string $token
+         * @param Token $token
          *
          * @return array of Message
          */
-        public function retrieveMessages($token);
+        public function retrieveMessages(Token $token);
 
     }
 

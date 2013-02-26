@@ -56,6 +56,10 @@ namespace ConFoo\Mess {
             $this->messages[] = $message;
         }
 
+        public function getMessages() {
+            return $this->messages;
+        }
+
     }
 
 }

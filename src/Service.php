@@ -45,7 +45,7 @@ namespace ConFoo\Mess {
         }
 
         /**
-         * @param string $token
+         * @param Token $token
          * @param string $recipient Username
          * @param string $message
          *
@@ -56,17 +56,20 @@ namespace ConFoo\Mess {
          *
          * @return null
          */
-        public function postMessage($token, $recipient, $message) {
-            // TODO: Implement postMessage() method.
+        public function postMessage(Token $token, $recipient, $message) {
+            $sender = $this->userRepository->findUserByToken($token);
+            $recipientUser = $this->userRepository->findUserByUsername($recipient);
+            $recipientUser->addMessage(new Message($sender, $message));
         }
 
         /**
-         * @param string $token
+         * @param Token $token
          *
          * @return array of Message
          */
-        public function retrieveMessages($token) {
-            // TODO: Implement retrieveMessages() method.
+        public function retrieveMessages(Token $token) {
+            $user = $this->userRepository->findUserByToken($token);
+            return $user->getMessages();
         }
 
     }
