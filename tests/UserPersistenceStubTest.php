@@ -5,12 +5,12 @@ namespace ConFoo\Mess {
     class UserPersistenceStubTest extends \PHPUnit_Framework_TestCase {
 
         /**
-         * @var UserPersistence
+         * @var UserRepository
          */
         private $persistence;
 
         protected function setUp() {
-            $this->persistence = new UserPersistenceStub();
+            $this->persistence = new InMemoryUserRepository();
         }
 
         public function testUserCanBePersisted() {

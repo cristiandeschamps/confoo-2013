@@ -5,15 +5,15 @@ namespace ConFoo\Mess {
     class Service implements API {
 
         /**
-         * @var UserPersistence
+         * @var UserRepository
          */
-        private $persistence;
+        private $userRepository;
 
         /**
-         * @param UserPersistence $persistence
+         * @param UserRepository $repository
          */
-        public function __construct(UserPersistence $persistence) {
-            $this->persistence = $persistence;
+        public function __construct(UserRepository $repository) {
+            $this->userRepository = $repository;
         }
 
         /**
@@ -36,9 +36,9 @@ namespace ConFoo\Mess {
             $token = new Token($username);
 
             try {
-                $this->persistence->saveUser(new User($username, $email, $token));
+                $this->userRepository->saveUser(new User($username, $email, $token));
                 return $token;
-            } catch (PersistenceException $e) {
+            } catch (UserRepositoryException $e) {
                 throw new \RuntimeException('...', 0, $e);
             }
 

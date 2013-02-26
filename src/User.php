@@ -19,6 +19,11 @@ namespace ConFoo\Mess {
          */
         private $token;
 
+        /**
+         * @var Message[]
+         */
+        private $messages = array();
+
         public function __construct($username, $email, Token $token) {
             $this->username = $username;
             $this->email = $email;
@@ -44,6 +49,11 @@ namespace ConFoo\Mess {
          */
         public function getUsername() {
             return $this->username;
+        }
+
+
+        public function addMessage(Message $message) {
+            $this->messages[] = $message;
         }
 
     }

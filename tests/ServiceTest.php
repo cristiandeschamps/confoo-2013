@@ -10,12 +10,12 @@ namespace ConFoo\Mess {
         private $service;
 
         /**
-         * @var UserPersistence
+         * @var UserRepository
          */
         private $persistence;
 
         protected function setUp() {
-            $this->persistence = $this->getMock('ConFoo\\Mess\\UserPersistence');
+            $this->persistence = $this->getMock('ConFoo\\Mess\\UserRepository');
             $this->service = new Service($this->persistence);
         }
 

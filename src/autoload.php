@@ -9,19 +9,19 @@ spl_autoload_register(
             $classes = array(
                 'confoo\\mess\\api' => '/API.php',
                 'confoo\\mess\\exception' => '/Exception.php',
+                'confoo\\mess\\inmemoryuserrepository' => '/InMemoryUserRepository.php',
                 'confoo\\mess\\invalidemailexception' => '/InvalidEmailException.php',
                 'confoo\\mess\\invalidmessageexception' => '/InvalidMessageException.php',
                 'confoo\\mess\\invalidtokenexception' => '/InvalidTokenException.php',
                 'confoo\\mess\\invalidusernameexception' => '/InvalidUsernameException.php',
                 'confoo\\mess\\message' => '/Message.php',
                 'confoo\\mess\\notauthorizedexception' => '/NotAuthorizedException.php',
-                'confoo\\mess\\persistenceexception' => '/PersistenceException.php',
                 'confoo\\mess\\service' => '/Service.php',
                 'confoo\\mess\\token' => '/Token.php',
                 'confoo\\mess\\user' => '/User.php',
                 'confoo\\mess\\usernameunavailableexception' => '/UsernameUnavailableException.php',
-                'confoo\\mess\\userpersistence' => '/UserPersistence.php',
-                'confoo\\mess\\userpersistencestub' => '/UserPersistenceStub.php'
+                'confoo\\mess\\userrepository' => '/UserRepository.php',
+                'confoo\\mess\\userrepositoryexception' => '/UserRepositoryException.php'
             );
         }
         $cn = strtolower($class);
