@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mess" default="build">
+ <property name="php" value="php"/>
+ <property name="phpunit" value="phpunit"/>
+
+ <target name="build" depends="prepare,lint,phpunit"/>
+
+ <target name="clean" description="Cleanup build artifacts">
+  <delete dir="${basedir}/build/coverage"/>
+ </target>
+
+ <target name="prepare" depends="clean,phpab" description="Prepare for build">
+  <mkdir dir="${basedir}/build/coverage"/>
+ </target>
+
+ <target name="phpab" description="Generate autoloader script">
+  <exec executable="phpab">
+   <arg value="--output" />
+   <arg path="src/autoload.php" />
+   <arg path="src" />
+  </exec>
+ </target>
+
+ <target name="lint">
+  <apply executable="${php}" failonerror="true">
+   <arg value="-l" />
+
+   <fileset dir="${basedir}/src">
+    <include name="**/*.php" />
+    <modified />
+   </fileset>
+
+   <fileset dir="${basedir}/tests">
+    <include name="**/*.php" />
+    <modified />
+   </fileset>
+  </apply>
+ </target>
+
+ <target name="phpunit" description="Run unit tests with PHPUnit">
+  <condition property="phpunit_cmd" value="${php} ${phpunit}" else="${phpunit}">
+   <not>
+    <equals arg1="${phpunit}" arg2="phpunit" />
+   </not>
+  </condition>
+
+  <exec executable="${phpunit_cmd}" failonerror="true"/>
+ </target>
+</project>
